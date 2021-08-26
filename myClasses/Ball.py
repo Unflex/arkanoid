@@ -50,7 +50,7 @@ class Ball:
         for self.barr in self.barrier_pos:
 
             if pos[2] >= self.barr[0] and pos[0] <= self.barr[2]:
-                if pos[3] >= self.barr[1] and pos[3] <= self.barr[3]:
+                if pos[3] >= self.barr[1] and pos[1] <= self.barr[3]:
                     # увеличиваем счёт (обработчик этого события будет описан ниже)
                     self.score.hit()
                     position = self.barrier_pos.index(self.barr)
