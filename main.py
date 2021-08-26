@@ -6,9 +6,11 @@ from myClasses.Score import Score
 from myClasses.Paddle import Paddle
 from myClasses.Ball import Ball
 from myClasses.Barrier import Barrier
-
+from myClasses.GameDifficulty import GameDifficulty
+speed = 2
 # точка входа нашей программы
 if __name__ == '__main__':
+    gamedifficulty = GameDifficulty()
     # создаем наше игровое окно
     window = Window()
 
@@ -24,7 +26,7 @@ if __name__ == '__main__':
 
 
     # создаём объект — красный шарик
-    ball = Ball(window.canvas, paddle, score,mas_barriers,window,'red')
+    ball = Ball(window.canvas, paddle, score,mas_barriers,window,speed,'red')
     # пока шарик не коснулся дна
     while not ball.hit_bottom:
 

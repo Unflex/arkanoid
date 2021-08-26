@@ -2,14 +2,14 @@ import random
 # Описываем класс Ball, который будет отвечать за шарик
 class Ball:
     # конструктор — он вызывается в момент создания нового объекта на основе этого класса
-    def __init__(self, canvas, paddle, score, mas_barriers,window,color):
+    def __init__(self, canvas, paddle, score, mas_barriers,window,speed,color):
         # задаём параметры объекта, которые нам передают в скобках в момент создания
         self.canvas = canvas
         self.paddle = paddle
         self.score = score
         self.mas_barriers = mas_barriers
         self.window = window
-
+        self.speed = speed
         # цвет нужен был для того, чтобы мы им закрасили весь шарик
         # здесь появляется новое свойство id, в котором хранится внутреннее название шарика
         # а ещё командой create_oval мы создаём круг радиусом 15 пикселей и закрашиваем нужным цветом
@@ -23,7 +23,7 @@ class Ball:
         # выбираем первый из перемешанного — это будет вектор движения шарика
         self.x = starts[0]
         # в самом начале он всегда падает вниз, поэтому уменьшаем значение по оси y
-        self.y = -2
+        self.y = -self.speed
         # шарик узнаёт свою высоту и ширину
         self.canvas_height = self.canvas.winfo_height()
         self.canvas_width = self.canvas.winfo_width()
@@ -73,7 +73,7 @@ class Ball:
         # если шарик падает сверху
         if pos[1] <= 0:
             # задаём падение на следующем шаге = 2
-            self.y = 2
+            self.y = self.speed
         # если шарик правым нижним углом коснулся дна
         if pos[3] >= self.canvas_height:
             # помечаем это в отдельной переменной
@@ -87,7 +87,7 @@ class Ball:
         # если было касание платформы
         if self.hit_paddle(pos) == True:
             # отправляем шарик наверх
-            self.y = -2
+            self.y = -self.speed
         # если коснулись левой стенки
         if pos[0] <= 0:
             # движемся вправо
@@ -98,4 +98,4 @@ class Ball:
             self.x = -2
         if self.hit_barrier(pos) == True:
 
-            self.y = 2
+            self.y = self.speed
