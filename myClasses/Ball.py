@@ -17,7 +17,7 @@ class Ball:
         # помещаем шарик в точку с координатами 245,100
         self.canvas.move(self.id, 245, 250)
         # задаём список возможных направлений для старта
-        starts = [-2, -1, 1, 2]
+        starts = [-self.speed, -self.speed, self.speed, self.speed]
         # перемешиваем его
         random.shuffle(starts)
         # выбираем первый из перемешанного — это будет вектор движения шарика
@@ -72,7 +72,7 @@ class Ball:
         pos = self.canvas.coords(self.id)
         # если шарик падает сверху
         if pos[1] <= 0:
-            # задаём падение на следующем шаге = 2
+            # задаём падение на следующем шаге = speed
             self.y = self.speed
         # если шарик правым нижним углом коснулся дна
         if pos[3] >= self.canvas_height:
@@ -80,6 +80,7 @@ class Ball:
             self.hit_bottom = True
             # выводим сообщение и количество очков
             self.window.canvas.create_text(250, 120, text='Вы проиграли', font=('Courier', 30), fill='red')
+        # если сломаны все препятствия выводим победу
         if  len(self.mas_barriers) == 0:
             self.hit_bottom = True
             self.window.canvas.create_text(250, 120, text='Вы выйграли', font=('Courier', 30), fill='green')
@@ -91,11 +92,11 @@ class Ball:
         # если коснулись левой стенки
         if pos[0] <= 0:
             # движемся вправо
-            self.x = 2
+            self.x = self.speed
         # если коснулись правой стенки
         if pos[2] >= self.canvas_width:
             # движемся влево
-            self.x = -2
+            self.x = -self.speed
         if self.hit_barrier(pos) == True:
 
             self.y = self.speed
