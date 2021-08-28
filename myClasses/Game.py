@@ -8,7 +8,7 @@ from myClasses.Ball import Ball
 from myClasses.Barrier import Barrier
 
 
-class GameDifficulty:
+class Game:
     def __init__(self):
         self.tk = Tk()
 

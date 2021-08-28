@@ -6,6 +6,6 @@ class Barrier:
         self.starting_y = starting_y
         self.hit = False
         self.canvas.move(self.id,self.starting_x,self.starting_y)
-    def deli(self):
+    def destruction(self):
 
         self.canvas.delete(self.id)

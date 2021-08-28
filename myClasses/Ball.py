@@ -54,7 +54,7 @@ class Ball:
                     # увеличиваем счёт (обработчик этого события будет описан ниже)
                     self.score.hit()
                     position = self.barrier_pos.index(self.barr)
-                    self.mas_barriers[position].deli()
+                    self.mas_barriers[position].destruction()
                     self.barrier_pos.remove(self.barr)
                     self.mas_barriers.remove(self.mas_barriers[position])
 

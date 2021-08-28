@@ -1,5 +1,5 @@
-from myClasses.GameDifficulty import GameDifficulty
+from myClasses.Game import Game
 # точка входа нашей программы
 if __name__ == '__main__':
-    gamedifficulty = GameDifficulty()
+    game = Game()
     # создаем наше игровое окно
