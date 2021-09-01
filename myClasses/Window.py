@@ -11,7 +11,6 @@ class Window:
         self.tk.wm_attributes('-topmost', 1)
         # создаём новый холст — 400 на 500 пикселей, где и будем рисовать игру
         self.canvas = Canvas(self.tk, width=500, height=400, highlightthickness=0,bg='gray')
-
         # говорим холсту, что у каждого видимого элемента будут свои отдельные координаты
         self.canvas.pack()
         # обновляем окно с холстом

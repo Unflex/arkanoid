@@ -2,13 +2,12 @@ import random
 # Описываем класс Ball, который будет отвечать за шарик
 class Ball:
     # конструктор — он вызывается в момент создания нового объекта на основе этого класса
-    def __init__(self, canvas, paddle, score, mas_barriers,window,speed,color):
+    def __init__(self, canvas, paddle, score, mas_barriers,speed,color):
         # задаём параметры объекта, которые нам передают в скобках в момент создания
         self.canvas = canvas
         self.paddle = paddle
         self.score = score
         self.mas_barriers = mas_barriers
-        self.window = window
         self.speed = speed
         # цвет нужен был для того, чтобы мы им закрасили весь шарик
         # здесь появляется новое свойство id, в котором хранится внутреннее название шарика
@@ -36,8 +35,6 @@ class Ball:
         # если координаты касания совпадают с координатами платформы
         if pos[2] >= paddle_pos[0] and pos[0] <= paddle_pos[2]:
             if pos[3] >= paddle_pos[1] and pos[3] <= paddle_pos[3]:
-                # увеличиваем счёт (обработчик этого события будет описан ниже)
-                #self.score.hit()
                 # возвращаем метку о том, что мы успешно коснулись
                 return True
         # возвращаем False — касания не было
@@ -79,11 +76,11 @@ class Ball:
             # помечаем это в отдельной переменной
             self.hit_bottom = True
             # выводим сообщение и количество очков
-            self.window.canvas.create_text(250, 120, text='Вы проиграли', font=('Courier', 30), fill='red')
+            self.canvas.create_text(250, 120, text='Вы проиграли', font=('Courier', 30), fill='red')
         # если сломаны все препятствия выводим победу
         if  len(self.mas_barriers) == 0:
             self.hit_bottom = True
-            self.window.canvas.create_text(250, 120, text='Вы выйграли', font=('Courier', 30), fill='green')
+            self.canvas.create_text(250, 120, text='Вы выйграли', font=('Courier', 30), fill='green')
 
         # если было касание платформы
         if self.hit_paddle(pos) == True:

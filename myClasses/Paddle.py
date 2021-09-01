@@ -28,6 +28,8 @@ class Paddle:
         self.started = False
         # как только игрок нажмёт Enter — всё стартует
         self.canvas.bind_all('<KeyPress-Return>', self.start_game)
+        self.canvas.bind_all('<KeyRelease-Right>', self.stop)
+        self.canvas.bind_all('<KeyRelease-Left>', self.stop)
     # движемся вправо
     def turn_right(self, event):
         # будем смещаться правее на 2 пикселя по оси х
@@ -36,6 +38,8 @@ class Paddle:
     def turn_left(self, event):
         # будем смещаться левее на 2 пикселя по оси х
         self.x = -2
+    def stop(self, event):
+        self.x = 0
     # игра начинается
     def start_game(self, event):
         # меняем значение переменной, которая отвечает за старт

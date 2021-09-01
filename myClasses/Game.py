@@ -12,27 +12,25 @@ class Game:
     def __init__(self):
         self.tk = Tk()
 
-        self.b1 = Button(text="Легкий",
+        self.buttonEasy = Button(text="Легкий",
                          width=15, height=3)
-        self.b1['command'] = lambda sp=1: self.start(sp)
-        self.b1.pack()
-        self.b2 = Button(text="Средний",
+        self.buttonEasy['command'] = lambda speed_easy=1: self.start(speed_easy)
+        self.buttonEasy.pack()
+        self.buttonMedium = Button(text="Средний",
                          width=15, height=3)
-        self.b2['command'] = lambda sp=2: self.start(sp)
-        self.b2.pack()
-        self.b3 = Button(text="Тяжелый",
+        self.buttonMedium['command'] = lambda speed_medium=2: self.start(speed_medium)
+        self.buttonMedium.pack()
+        self.buttonHard = Button(text="Тяжелый",
                          width=15, height=3)
-        self.b3['command'] = lambda sp=3: self.start(sp)
-        self.b3.pack()
+        self.buttonHard['command'] = lambda speed_hard=3: self.start(speed_hard)
+        self.buttonHard.pack()
         self.tk.mainloop()
 
-    def start(self, e):
-        global speed
-        speed = e
+    def start(self, speed):
+
         self.tk.destroy()
         window = Window()
-
-        mas_barriers = []
+        self.mas_barriers = []
         # создаём объект — зелёный счёт
         score = Score(window.canvas, 'black')
         # создаём объект — белую платформу
@@ -40,10 +38,10 @@ class Game:
         for i in range(0, 1):
             for j in range(0, 9):
                 barrier = Barrier(window.canvas, j * 56, i * 23, 'green')
-                mas_barriers.append(barrier)
+                self.mas_barriers.append(barrier)
 
         # создаём объект — красный шарик
-        ball = Ball(window.canvas, paddle, score, mas_barriers, window, speed, 'red')
+        ball = Ball(window.canvas, paddle, score, self.mas_barriers, speed, 'red')
         # пока шарик не коснулся дна
         while not ball.hit_bottom:
 
